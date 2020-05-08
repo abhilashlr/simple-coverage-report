@@ -1,0 +1,11 @@
+name: 'Simple coverage report comparison'
+description: 'Simple coverage report comparison'
+author: 'Abhilash L R'
+branding:
+  color: 'red'
+inputs:
+  repo-token:
+    description: 'The GITHUB_TOKEN secret'
+runs:
+  using: 'node12'
+  main: 'index.js'

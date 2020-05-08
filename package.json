@@ -1,0 +1,31 @@
+{
+  "name": "simple-coverage-report",
+  "version": "1.0.0",
+  "description": "Simple coverage report comparison",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com:abhilashlr/simple-coverage-report.git"
+  },
+  "keywords": [
+    "actions",
+    "coverage",
+    "codecoverage"
+  ],
+  "author": "Abhilash L R",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/exec": "^1.0.0",
+    "@actions/github": "^2.2.0",
+    "esm": "^3.2.25"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  }
+}
