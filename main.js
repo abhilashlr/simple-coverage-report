@@ -11,7 +11,9 @@ let octokit;
 
 async function run() {
   try {
+    let baseBranch = {};
     const myToken = getInput('repo-token', { required: true });
+    const artifactJSON = getInput('artifact-json');
 
     octokit = new GitHub(myToken);
 
@@ -22,12 +24,17 @@ async function run() {
       name: pullRequest.head.ref,
     };
 
-    await exec(`git checkout ${pullRequest.base.sha}`);
-
-    const baseBranch = {
-      coverage: await getCodeCoverage(),
+    baseBranch = {
       name: pullRequest.base.ref,
     };
+
+    if (artifactJSON) {
+      baseBranch.coverage = JSON.parse(artifactJSON).total;
+    } else {
+      await exec(`git checkout ${pullRequest.base.sha}`);
+
+      baseBranch.coverage = await getCodeCoverage();
+    }
 
     const body = buildOutputText(baseBranch, prBranch);
 
@@ -36,8 +43,7 @@ async function run() {
     } catch (error) {
       console.log('Could not create a comment automatically.');
 
-      console.log(`Here's the diff:\n\n
-      ${body}`);
+      console.log(`Here's the diff:\n${body}`);
     }
   } catch (error) {
     setFailed(error.message);
