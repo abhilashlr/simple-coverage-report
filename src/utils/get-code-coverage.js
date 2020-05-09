@@ -22,6 +22,7 @@ export async function getCodeCoverage() {
   const coverage = JSON.parse(contents).total;
 
   console.log('COVERAGE is generated');
+  console.log(coverage);
 
   return coverage;
 }

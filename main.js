@@ -29,6 +29,8 @@ async function run() {
     };
 
     if (artifactJSON) {
+      console.log('Using artifact from PR');
+
       baseBranch.coverage = JSON.parse(artifactJSON).total;
     } else {
       await exec(`git checkout ${pullRequest.base.sha}`);
